@@ -1,0 +1,39 @@
+  <h1 class="my-font">Leaderboard</h1>
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">First</th>
+  <th scope="col">Last</th>
+  <th scope="col">Score</th>
+  <th>
+  </th>
+</tr>
+<div class="btn-group pull-right">
+  <button type="button" class="btn btn-success"(click)="savePlayer()" >Save</button>
+  <button type="button" class="btn btn-info" [disabled]="disableAddButton" (click)="addPlayer()">Add</button>
+</div>
+<tbody class="my-font">
+  <tr *ngFor="let player of playerArray; let i = index">
+    <th *ngIf="player.editMode === false" scope="row">{{player.hashtag}}</th>
+    <td *ngIf="player.editMode === false">{{player.firstName}}</td>
+    <td *ngIf="player.editMode === false">{{player.lastName}}</td>
+    <td *ngIf="player.editMode === false">{{player.score}}</td>
+
+    <th *ngIf="player.editMode" scope="row">
+      <input [(ngModel)]="player.hashtag" type="text" class="form-control" placeholder="Rank">
+    </th>
+    <td *ngIf="player.editMode">
+      <input [(ngModel)]="player.firstName" type="text" class="form-control" placeholder="First Name">
+
+    </td>
+    <td *ngIf="player.editMode">
+      <input [(ngModel)]="player.lastName" type="text" class="form-control" placeholder="Last Name">
+
+    </td>
+    <td *ngIf="player.editMode">
+      <input [(ngModel)]="player.score" type="text" class="form-control" placeholder="Score">
+
+    </td>
+
+    <td><button type="button" class="btn btn-danger pull-right" (click)="removePlayer(i)">X</button></td>
+  </tr>
+</tbody>
